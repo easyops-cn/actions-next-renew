@@ -1,0 +1,19 @@
+name: Renew
+description: 'GitHub Actions: renew for Brick Next repositories'
+runs:
+  using: "composite"
+  steps:
+  - run: yarn install --frozen-lockfile
+  # - run: yarn renew
+  - run: yarn extract
+  - run: npx yarn-deduplicate yarn.lock
+  - run: yarn install
+
+  # Build and test will be covered in pull request.
+  # Build and test before pushing.
+  # - run: yarn build
+  # - run: yarn test
+
+  - run: git add -A
+  - run: 'git commit -m "chore(): yarn renew"'
+  - run: git push
