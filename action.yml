@@ -4,16 +4,26 @@ runs:
   using: "composite"
   steps:
   - run: yarn install --frozen-lockfile
+    shell: bash
   # - run: yarn renew
+  #   shell: bash
   - run: yarn extract
+    shell: bash
   - run: npx yarn-deduplicate yarn.lock
+    shell: bash
   - run: yarn install
+    shell: bash
 
   # Build and test will be covered in pull request.
   # Build and test before pushing.
   # - run: yarn build
+  #   shell: bash
   # - run: yarn test
+  #   shell: bash
 
   - run: git add -A
+    shell: bash
   - run: 'git commit -m "chore(): yarn renew"'
+    shell: bash
   - run: git push
+    shell: bash
